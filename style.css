@@ -7,17 +7,17 @@ body {
 }
 
 .hero {
-  background: url('https://images.unsplash.com/photo-1615902051768-394274c07021?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  background: linear-gradient(to bottom, #fef9f3, #f6eee6);
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   position: relative;
-  color: white;
+  color: #3e2b1f;
 }
 .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
   padding: 60px 20px;
   border-radius: 10px;
 }
