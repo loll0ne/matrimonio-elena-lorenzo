@@ -3,48 +3,57 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Elena & Lorenzo – 31 Maggio 2026</title>
+  <title>Elena & Lorenzo – Matrimonio 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1 class="hero-title">Elena & Lorenzo</h1>
-    <p class="hero-date">Ci sposiamo il 31 Maggio 2026</p>
-    <div id="countdown" class="countdown"></div>
-    <nav>
-      <a href="#dettagli">Dettagli</a>
-      <a href="#storia">La nostra storia</a>
-      <a href="#rsvp">RSVP</a>
-      <a href="#lista">Lista nozze</a>
-    </nav>
-  </header>
-
-  <section id="dettagli" class="section">
-    <h2>📍 Il grande giorno</h2>
-    <p><strong>Cerimonia:</strong> ore 15:30, Chiesa di San Giovanni, Roma</p>
-    <p><strong>Ricevimento:</strong> ore 18:00, Villa delle Rose, Roma</p>
-    <p><strong>Dress code:</strong> Elegante</p>
+  <section class="hero">
+    <div class="overlay">
+      <h1>Elena & Lorenzo</h1>
+      <p>Ci sposiamo il 31 Maggio 2026</p>
+      <div id="countdown" class="countdown"></div>
+      <a href="#timeline" class="scroll-down">Scopri di più ↓</a>
+    </div>
   </section>
 
-  <section id="storia" class="section">
-    <h2>💕 La nostra storia</h2>
-    <p>Ci siamo incontrati per caso, ma da allora non ci siamo più lasciati. Dopo viaggi, sogni, e mille emozioni, abbiamo deciso di dire "sì" per sempre.</p>
+  <nav class="navbar">
+    <a href="#timeline">Dettagli</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#lista">Lista nozze</a>
+  </nav>
+
+  <section id="timeline" class="section">
+    <h2>🕒 Programma della giornata</h2>
+    <div class="timeline">
+      <div class="event">
+        <h3>15:30 – Cerimonia</h3>
+        <p>Chiesa di San Giovanni, Roma</p>
+      </div>
+      <div class="event">
+        <h3>18:00 – Ricevimento</h3>
+        <p>Villa delle Rose, Roma</p>
+      </div>
+      <div class="event">
+        <h3>21:00 – Festa & balli</h3>
+        <p>Condividiamo emozioni e musica fino a tardi</p>
+      </div>
+    </div>
   </section>
 
-  <section id="rsvp" class="section">
-    <h2>💌 Conferma la tua presenza</h2>
-    <p>Compila il modulo per farci sapere se verrai!</p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdyftVxZo18UdNRn5TN0BBrE7ZTwy7p7mcV4E67HWGUKhv0Ww/viewform?embedded=true" width="640" height="879" frameborder="0" marginheight="0" marginwidth="0">Caricamento…</iframe>
+  <section id="rsvp" class="section alt">
+    <h2>💌 RSVP</h2>
+    <p>Fateci sapere se ci sarete al nostro giorno speciale!</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdyftVxZo18UdNRn5TN0BBrE7ZTwy7p7mcV4E67HWGUKhv0Ww/viewform?embedded=true" target="_blank" class="btn">Conferma la tua presenza</a>
   </section>
 
   <section id="lista" class="section">
     <h2>🎁 Lista nozze</h2>
-    <p>Se desiderate farci un regalo, potete contribuire con un bonifico:</p>
-    <p><strong>IBAN: IT00A0000000000000000000000</strong></p>
-    <p>Oppure visitare la nostra <a href="#">lista nozze online</a>.</p>
+    <p>Potete contribuire al nostro futuro con un regalo o un pensiero:</p>
+    <p><strong>IBAN:</strong> IT00A0000000000000000000000</p>
+    <p>O visitare la nostra <a href="#">lista nozze online</a>.</p>
   </section>
 
   <footer>
@@ -52,7 +61,7 @@
   </footer>
 
   <script>
-    // Countdown aggiornato
+    // Countdown
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("2026-05-31T15:30:00").getTime();
 
@@ -79,6 +88,5 @@
       `;
     }, 1000);
   </script>
-
 </body>
 </html>
