@@ -1,55 +1,65 @@
 
 body {
   margin: 0;
-  font-family: 'Lora', serif;
+  font-family: 'Playfair Display', serif;
   background-color: #fff;
   color: #3e2b1f;
   scroll-behavior: smooth;
 }
 
 .hero {
-  background: url('https://images.unsplash.com/photo-1521420126051-c2d7c4c31450?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1615902051768-394274c07021?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
   position: relative;
   color: white;
 }
-.overlay {
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 40px;
-  border-radius: 10px;
 }
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
 .hero h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 72px;
+  font-size: 64px;
   margin: 0;
 }
 .hero p {
-  font-size: 24px;
-  margin: 10px 0 20px;
+  font-size: 22px;
+  margin-bottom: 20px;
 }
 .countdown {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 .countdown div {
-  background-color: white;
+  background: white;
   color: #3e2b1f;
   padding: 10px 14px;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 10px;
   min-width: 60px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
-.scroll-down {
-  color: white;
-  text-decoration: underline;
-  font-size: 14px;
+.countdown span {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
 }
+
 .navbar {
   background-color: #fffaf3;
   padding: 15px;
@@ -65,23 +75,31 @@ body {
   text-decoration: none;
   font-weight: bold;
 }
+
 .section {
-  padding: 60px 20px;
+  padding: 80px 20px;
   text-align: center;
+}
+.section h2 {
+  margin-bottom: 20px;
 }
 .section.alt {
   background-color: #fdf4ea;
 }
+
 .timeline {
+  max-width: 600px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 25px;
-  max-width: 600px;
-  margin: auto;
 }
-.event h3 {
-  margin-bottom: 5px;
-  font-size: 20px;
+.event {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 .btn {
   background-color: #3e2b1f;
@@ -99,4 +117,15 @@ footer {
   text-align: center;
   background-color: #e8ded2;
   padding: 20px;
+  font-size: 14px;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
