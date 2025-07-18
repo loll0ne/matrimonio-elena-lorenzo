@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elena & Lorenzo – Matrimonio</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -14,21 +14,30 @@
       <h1>Elena & Lorenzo</h1>
       <p>Ci sposiamo il 31 Maggio 2026</p>
       <div class="countdown" id="countdown"></div>
-      <a href="#programma" class="btn">Scopri di più ↓</a>
+      <a href="#benvenuto" class="btn">Scopri di più ↓</a>
     </div>
   </section>
 
   <nav class="navbar">
+    <a href="#benvenuto">Benvenuto</a>
     <a href="#programma">Programma</a>
     <a href="#rsvp">RSVP</a>
     <a href="#lista">Lista nozze</a>
   </nav>
 
+  <section id="benvenuto" class="section">
+    <h2>Benvenuti al nostro matrimonio!</h2>
+    <p>
+      Siamo felicissimi di condividere con voi questo giorno così speciale.  
+      Sul sito troverete tutte le informazioni utili per partecipare, confermare la presenza e, se volete, contribuire alla nostra lista nozze.
+    </p>
+  </section>
+
   <section id="programma" class="section">
     <h2>🕒 Programma della giornata</h2>
     <div class="timeline">
-      <div><strong>15:30</strong> – Cerimonia (Chiesa di San Giovanni)</div>
-      <div><strong>18:00</strong> – Ricevimento (Villa delle Rose)</div>
+      <div><strong>15:30</strong> – Cerimonia (Chiesa di San Giovanni, Roma)</div>
+      <div><strong>18:00</strong> – Ricevimento (Villa delle Rose, Roma)</div>
       <div><strong>21:00</strong> – Festa & Balli</div>
     </div>
   </section>
@@ -67,7 +76,12 @@
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `<div>${d}<span>giorni</span></div><div>${h}<span>ore</span></div><div>${m}<span>min</span></div><div>${s}<span>sec</span></div>`;
+      countdown.innerHTML = `
+        <div>${d}<span>giorni</span></div>
+        <div>${h}<span>ore</span></div>
+        <div>${m}<span>min</span></div>
+        <div>${s}<span>sec</span></div>
+      `;
     }, 1000);
   </script>
 
