@@ -7,7 +7,7 @@ body {
 }
 
 .hero {
-  background: linear-gradient(to bottom, #fef9f3, #f6eee6);
+  background: linear-gradient(to bottom, #fefaf6, #f2e9df);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -16,39 +16,48 @@ body {
   position: relative;
   color: #3e2b1f;
 }
+
 .overlay {
   background-color: transparent;
   padding: 60px 20px;
   border-radius: 10px;
 }
+
 .hero h1 {
   font-family: 'Great Vibes', cursive;
   font-size: 64px;
   margin: 0;
 }
+
 .hero p {
   font-size: 20px;
   margin-bottom: 30px;
 }
+
 .countdown {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-bottom: 20px;
 }
+
 .countdown div {
-  background: white;
+  background: #ffffff;
   color: #3e2b1f;
   padding: 10px;
   border-radius: 8px;
   min-width: 60px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-weight: bold;
 }
+
 .countdown span {
   display: block;
   font-size: 12px;
+  font-weight: normal;
   margin-top: 4px;
 }
+
 .btn {
   background: #3e2b1f;
   color: white;
@@ -57,9 +66,11 @@ body {
   border-radius: 6px;
   display: inline-block;
 }
+
 .btn:hover {
   background: #5a3d2c;
 }
+
 .navbar {
   background: #fffaf3;
   padding: 15px;
@@ -69,19 +80,23 @@ body {
   z-index: 100;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
+
 .navbar a {
   margin: 0 15px;
   color: #3e2b1f;
   text-decoration: none;
   font-weight: bold;
 }
+
 .section {
   padding: 80px 20px;
   text-align: center;
 }
+
 .section.alt {
   background: #fdf4ea;
 }
+
 .timeline {
   max-width: 600px;
   margin: auto;
@@ -90,6 +105,7 @@ body {
   gap: 20px;
   font-size: 18px;
 }
+
 footer {
   text-align: center;
   background: #e8ded2;
