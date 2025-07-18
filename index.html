@@ -2,19 +2,19 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Elena & Lorenzo – Matrimonio 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>Elena & Lorenzo – Matrimonio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <section class="hero">
-    <div class="hero-content">
+    <div class="overlay">
       <h1>Elena & Lorenzo</h1>
       <p>Ci sposiamo il 31 Maggio 2026</p>
-      <div id="countdown" class="countdown"></div>
-      <a href="#programma" class="btn">Scopri il programma</a>
+      <div class="countdown" id="countdown"></div>
+      <a href="#programma" class="btn">Scopri di più ↓</a>
     </div>
   </section>
 
@@ -24,35 +24,25 @@
     <a href="#lista">Lista nozze</a>
   </nav>
 
-  <section id="programma" class="section fade-in">
-    <h2>Programma della giornata</h2>
+  <section id="programma" class="section">
+    <h2>🕒 Programma della giornata</h2>
     <div class="timeline">
-      <div class="event">
-        <h3>15:30 – Cerimonia</h3>
-        <p>Chiesa di San Giovanni, Roma</p>
-      </div>
-      <div class="event">
-        <h3>18:00 – Ricevimento</h3>
-        <p>Villa delle Rose, Roma</p>
-      </div>
-      <div class="event">
-        <h3>21:00 – Festa & balli</h3>
-        <p>Condividiamo emozioni e musica fino a tardi</p>
-      </div>
+      <div><strong>15:30</strong> – Cerimonia (Chiesa di San Giovanni)</div>
+      <div><strong>18:00</strong> – Ricevimento (Villa delle Rose)</div>
+      <div><strong>21:00</strong> – Festa & Balli</div>
     </div>
   </section>
 
-  <section id="rsvp" class="section alt fade-in">
-    <h2>RSVP</h2>
-    <p>Fateci sapere se ci sarete al nostro giorno speciale!</p>
+  <section id="rsvp" class="section alt">
+    <h2>💌 RSVP</h2>
+    <p>Facci sapere se ci sarai!</p>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDUMMY-FORM-URL/viewform" target="_blank" class="btn">Conferma la tua presenza</a>
   </section>
 
-  <section id="lista" class="section fade-in">
-    <h2>Lista nozze</h2>
-    <p>Potete contribuire al nostro futuro con un regalo o un pensiero:</p>
-    <p><strong>IBAN:</strong> IT00A0000000000000000000000</p>
-    <p>O visitare la nostra <a href="#">lista nozze online</a>.</p>
+  <section id="lista" class="section">
+    <h2>🎁 Lista nozze</h2>
+    <p>IBAN: <strong>IT00A0000000000000000000000</strong></p>
+    <p>O visita la nostra <a href="#">lista online</a>.</p>
   </section>
 
   <footer>
@@ -61,30 +51,25 @@
 
   <script>
     const countdown = document.getElementById("countdown");
-    const targetDate = new Date("2026-05-31T15:30:00").getTime();
+    const target = new Date("2026-05-31T15:30:00").getTime();
 
-    const timer = setInterval(() => {
+    setInterval(() => {
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const diff = target - now;
 
-      if (distance < 0) {
-        clearInterval(timer);
-        countdown.innerHTML = "<strong>È il grande giorno!</strong>";
+      if (diff < 0) {
+        countdown.innerHTML = "È il grande giorno!";
         return;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `
-        <div><strong>${days}</strong><span>giorni</span></div>
-        <div><strong>${hours}</strong><span>ore</span></div>
-        <div><strong>${minutes}</strong><span>min</span></div>
-        <div><strong>${seconds}</strong><span>sec</span></div>
-      `;
+      countdown.innerHTML = `<div>${d}<span>giorni</span></div><div>${h}<span>ore</span></div><div>${m}<span>min</span></div><div>${s}<span>sec</span></div>`;
     }, 1000);
   </script>
+
 </body>
 </html>
