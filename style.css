@@ -1,0 +1,85 @@
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background-color: #fdf9f4;
+  color: #3e2b1f;
+  scroll-behavior: smooth;
+}
+
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #e8ded2, #fdf9f4);
+}
+
+.hero-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 64px;
+  margin-bottom: 10px;
+}
+
+.hero-date {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+nav {
+  margin-top: 20px;
+}
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #3e2b1f;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+input, textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 12px;
+  background-color: #3e2b1f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #5a3d2c;
+}
+
+.countdown {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.countdown div {
+  background-color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+  text-align: center;
+  background-color: #e8ded2;
+  padding: 20px;
+}
