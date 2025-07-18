@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Elena & Lorenzo – 31 Maggio 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,30 +16,32 @@
     <div id="countdown" class="countdown"></div>
     <nav>
       <a href="#dettagli">Dettagli</a>
+      <a href="#storia">La nostra storia</a>
       <a href="#rsvp">RSVP</a>
       <a href="#lista">Lista nozze</a>
     </nav>
   </header>
 
   <section id="dettagli" class="section">
-    <h2>Il grande giorno</h2>
+    <h2>📍 Il grande giorno</h2>
     <p><strong>Cerimonia:</strong> ore 15:30, Chiesa di San Giovanni, Roma</p>
     <p><strong>Ricevimento:</strong> ore 18:00, Villa delle Rose, Roma</p>
     <p><strong>Dress code:</strong> Elegante</p>
   </section>
 
+  <section id="storia" class="section">
+    <h2>💕 La nostra storia</h2>
+    <p>Ci siamo incontrati per caso, ma da allora non ci siamo più lasciati. Dopo viaggi, sogni, e mille emozioni, abbiamo deciso di dire "sì" per sempre.</p>
+  </section>
+
   <section id="rsvp" class="section">
-    <h2>Conferma la tua presenza</h2>
-    <form action="mailto:elena.lorenzo@email.com" method="POST" enctype="text/plain">
-      <input type="text" name="name" placeholder="Nome e cognome" required>
-      <input type="number" name="guests" placeholder="Numero di persone" min="1" required>
-      <textarea name="notes" placeholder="Note (allergie, richieste)"></textarea>
-      <button type="submit">Invia RSVP</button>
-    </form>
+    <h2>💌 Conferma la tua presenza</h2>
+    <p>Compila il modulo per farci sapere se verrai!</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdDUMMY-FORM-URL/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Caricamento…</iframe>
   </section>
 
   <section id="lista" class="section">
-    <h2>Lista nozze</h2>
+    <h2>🎁 Lista nozze</h2>
     <p>Se desiderate farci un regalo, potete contribuire con un bonifico:</p>
     <p><strong>IBAN: IT00A0000000000000000000000</strong></p>
     <p>Oppure visitare la nostra <a href="#">lista nozze online</a>.</p>
@@ -50,7 +52,7 @@
   </footer>
 
   <script>
-    // Countdown
+    // Countdown aggiornato
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("2026-05-31T15:30:00").getTime();
 
@@ -69,7 +71,12 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `<div>${days}d</div><div>${hours}h</div><div>${minutes}m</div><div>${seconds}s</div>`;
+      countdown.innerHTML = `
+        <div><strong>${days}</strong><br>giorni</div>
+        <div><strong>${hours}</strong><br>ore</div>
+        <div><strong>${minutes}</strong><br>min</div>
+        <div><strong>${seconds}</strong><br>sec</div>
+      `;
     }, 1000);
   </script>
 
