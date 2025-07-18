@@ -2,86 +2,101 @@
 body {
   margin: 0;
   font-family: 'Lora', serif;
-  background-color: #fdf9f4;
+  background-color: #fff;
   color: #3e2b1f;
   scroll-behavior: smooth;
 }
 
-header {
+.hero {
+  background: url('https://images.unsplash.com/photo-1521420126051-c2d7c4c31450?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 60px 20px 30px;
-  background: linear-gradient(to bottom, #f4e7df, #fdf9f4);
+  position: relative;
+  color: white;
+}
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 10px;
+}
+.hero h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 72px;
+  margin: 0;
+}
+.hero p {
+  font-size: 24px;
+  margin: 10px 0 20px;
+}
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.countdown div {
+  background-color: white;
+  color: #3e2b1f;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  min-width: 60px;
+}
+.scroll-down {
+  color: white;
+  text-decoration: underline;
+  font-size: 14px;
+}
+.navbar {
+  background-color: #fffaf3;
+  padding: 15px;
+  text-align: center;
   position: sticky;
   top: 0;
-  z-index: 10;
-  border-bottom: 1px solid #ddd;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-.hero-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 64px;
-  margin-bottom: 10px;
-}
-.hero-date {
-  font-size: 20px;
-  margin-bottom: 25px;
-}
-nav {
-  margin-top: 10px;
-}
-nav a {
-  margin: 0 12px;
-  text-decoration: none;
+.navbar a {
+  margin: 0 15px;
   color: #3e2b1f;
+  text-decoration: none;
   font-weight: bold;
-  font-size: 15px;
 }
 .section {
   padding: 60px 20px;
   text-align: center;
 }
-.section h2 {
-  margin-bottom: 20px;
-  font-size: 26px;
+.section.alt {
+  background-color: #fdf4ea;
 }
-form, iframe {
-  max-width: 500px;
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 600px;
   margin: auto;
 }
-input, textarea {
-  margin-bottom: 15px;
-  padding: 10px;
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.event h3 {
+  margin-bottom: 5px;
+  font-size: 20px;
 }
-button {
-  padding: 12px;
+.btn {
   background-color: #3e2b1f;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
 }
-button:hover {
+.btn:hover {
   background-color: #5a3d2c;
-}
-.countdown {
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.countdown div {
-  background-color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  min-width: 60px;
 }
 footer {
   text-align: center;
   background-color: #e8ded2;
   padding: 20px;
-  font-size: 14px;
 }
