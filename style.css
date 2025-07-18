@@ -1,22 +1,23 @@
 body {
   margin: 0;
   font-family: 'Lora', serif;
+  scroll-behavior: smooth;
   background: #fff;
   color: #3e2b1f;
-  scroll-behavior: smooth;
 }
+
 .hero {
   background: url('https://images.unsplash.com/photo-1615902051768-394274c07021?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   text-align: center;
+  position: relative;
   color: white;
 }
 .overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 60px 20px;
   border-radius: 10px;
 }
@@ -32,7 +33,7 @@ body {
 .countdown {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   margin-bottom: 20px;
 }
 .countdown div {
@@ -41,16 +42,28 @@ body {
   padding: 10px;
   border-radius: 8px;
   min-width: 60px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .countdown span {
   display: block;
   font-size: 12px;
   margin-top: 4px;
 }
+.btn {
+  background: #3e2b1f;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  display: inline-block;
+}
+.btn:hover {
+  background: #5a3d2c;
+}
 .navbar {
   background: #fffaf3;
-  text-align: center;
   padding: 15px;
+  text-align: center;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -63,7 +76,7 @@ body {
   font-weight: bold;
 }
 .section {
-  padding: 60px 20px;
+  padding: 80px 20px;
   text-align: center;
 }
 .section.alt {
@@ -76,19 +89,6 @@ body {
   flex-direction: column;
   gap: 20px;
   font-size: 18px;
-}
-.btn {
-  background: #3e2b1f;
-  color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  margin-top: 20px;
-  display: inline-block;
-}
-.btn:hover {
-  background: #5a3d2c;
 }
 footer {
   text-align: center;
