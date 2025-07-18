@@ -5,28 +5,28 @@
   <meta charset="UTF-8">
   <title>Elena & Lorenzo – Matrimonio 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <section class="hero">
-    <div class="overlay">
+    <div class="hero-content">
       <h1>Elena & Lorenzo</h1>
       <p>Ci sposiamo il 31 Maggio 2026</p>
       <div id="countdown" class="countdown"></div>
-      <a href="#timeline" class="scroll-down">Scopri di più ↓</a>
+      <a href="#programma" class="btn">Scopri il programma</a>
     </div>
   </section>
 
   <nav class="navbar">
-    <a href="#timeline">Dettagli</a>
+    <a href="#programma">Programma</a>
     <a href="#rsvp">RSVP</a>
     <a href="#lista">Lista nozze</a>
   </nav>
 
-  <section id="timeline" class="section">
-    <h2>🕒 Programma della giornata</h2>
+  <section id="programma" class="section fade-in">
+    <h2>Programma della giornata</h2>
     <div class="timeline">
       <div class="event">
         <h3>15:30 – Cerimonia</h3>
@@ -43,14 +43,14 @@
     </div>
   </section>
 
-  <section id="rsvp" class="section alt">
-    <h2>💌 RSVP</h2>
+  <section id="rsvp" class="section alt fade-in">
+    <h2>RSVP</h2>
     <p>Fateci sapere se ci sarete al nostro giorno speciale!</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdyftVxZo18UdNRn5TN0BBrE7ZTwy7p7mcV4E67HWGUKhv0Ww/viewform?embedded=true" target="_blank" class="btn">Conferma la tua presenza</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDUMMY-FORM-URL/viewform" target="_blank" class="btn">Conferma la tua presenza</a>
   </section>
 
-  <section id="lista" class="section">
-    <h2>🎁 Lista nozze</h2>
+  <section id="lista" class="section fade-in">
+    <h2>Lista nozze</h2>
     <p>Potete contribuire al nostro futuro con un regalo o un pensiero:</p>
     <p><strong>IBAN:</strong> IT00A0000000000000000000000</p>
     <p>O visitare la nostra <a href="#">lista nozze online</a>.</p>
@@ -61,7 +61,6 @@
   </footer>
 
   <script>
-    // Countdown
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("2026-05-31T15:30:00").getTime();
 
@@ -81,10 +80,10 @@
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       countdown.innerHTML = `
-        <div><strong>${days}</strong><br>giorni</div>
-        <div><strong>${hours}</strong><br>ore</div>
-        <div><strong>${minutes}</strong><br>min</div>
-        <div><strong>${seconds}</strong><br>sec</div>
+        <div><strong>${days}</strong><span>giorni</span></div>
+        <div><strong>${hours}</strong><span>ore</span></div>
+        <div><strong>${minutes}</strong><span>min</span></div>
+        <div><strong>${seconds}</strong><span>sec</span></div>
       `;
     }, 1000);
   </script>
