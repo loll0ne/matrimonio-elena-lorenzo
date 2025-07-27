@@ -1,114 +1,88 @@
+/* style.css */
+
 body {
   margin: 0;
-  font-family: 'Lora', serif;
-  scroll-behavior: smooth;
-  background: #fff;
-  color: #3e2b1f;
+  font-family: 'Georgia', serif;
+  background: #fefdfb;
+  color: #333;
 }
 
-.hero {
-  background: linear-gradient(to bottom, #fefaf6, #f2e9df);
+header.hero {
+  background: url('header.jpg') center/cover no-repeat;
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   position: relative;
-  color: #3e2b1f;
 }
 
-.overlay {
-  background-color: transparent;
-  padding: 60px 20px;
-  border-radius: 10px;
+header .overlay {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 16px;
 }
 
-.hero h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 64px;
-  margin: 0;
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #506a4f;
 }
 
-.hero p {
-  font-size: 20px;
-  margin-bottom: 30px;
+.slogan {
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.button {
+  background: #506a4f;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.programma, .lista-nozze, .galleria, .rsvp, .pensiero {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.eventi {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
 }
 
 .countdown {
+  margin-top: 2rem;
+  font-weight: bold;
+}
+
+.foto {
   display: flex;
+  gap: 1rem;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  margin-top: 2rem;
 }
 
-.countdown div {
-  background: #ffffff;
-  color: #3e2b1f;
-  padding: 10px;
-  border-radius: 8px;
-  min-width: 60px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  font-weight: bold;
+.foto img {
+  width: 30%;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.countdown span {
-  display: block;
-  font-size: 12px;
-  font-weight: normal;
-  margin-top: 4px;
-}
-
-.btn {
-  background: #3e2b1f;
-  color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 6px;
-  display: inline-block;
-}
-
-.btn:hover {
-  background: #5a3d2c;
-}
-
-.navbar {
-  background: #fffaf3;
-  padding: 15px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.navbar a {
-  margin: 0 15px;
-  color: #3e2b1f;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.section {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.section.alt {
-  background: #fdf4ea;
-}
-
-.timeline {
-  max-width: 600px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-size: 18px;
-}
-
-footer {
-  text-align: center;
-  background: #e8ded2;
-  padding: 20px;
-  font-size: 14px;
+@media (max-width: 768px) {
+  .eventi {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .foto {
+    flex-direction: column;
+  }
+  .foto img {
+    width: 80%;
+  }
 }
