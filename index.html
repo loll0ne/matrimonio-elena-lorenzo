@@ -1,89 +1,63 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elena & Lorenzo – Matrimonio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elena & Marco</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <section class="hero">
+  <header class="hero">
     <div class="overlay">
-      <h1>Elena & Lorenzo</h1>
-      <p>Ci sposiamo il 31 Maggio 2026</p>
-      <div class="countdown" id="countdown"></div>
-      <a href="#benvenuto" class="btn">Scopri di più ↓</a>
+      <h1>La Nostra Giornata</h1>
+      <p>20 settembre 2024</p>
+      <p class="slogan">Due cuori, una promessa. Il nostro sì, con voi.</p>
+      <a href="#programma" class="button">Scopri il nostro giorno speciale</a>
     </div>
-  </section>
+  </header>
 
-  <nav class="navbar">
-    <a href="#benvenuto">Benvenuto</a>
-    <a href="#programma">Programma</a>
-    <a href="#rsvp">RSVP</a>
-    <a href="#lista">Lista nozze</a>
-  </nav>
-
-  <section id="benvenuto" class="section">
-    <h2>Benvenuti al nostro matrimonio!</h2>
-    <p>
-      Siamo felicissimi di condividere con voi questo giorno così speciale.  
-      Sul sito troverete tutte le informazioni utili per partecipare, confermare la presenza e, se volete, contribuire alla nostra lista nozze.
-    </p>
-  </section>
-
-  <section id="programma" class="section">
-    <h2>🕒 Programma della giornata</h2>
-    <div class="timeline">
-      <div><strong>15:30</strong> – Cerimonia (Chiesa di San Giovanni, Roma)</div>
-      <div><strong>18:00</strong> – Ricevimento (Villa delle Rose, Roma)</div>
-      <div><strong>21:00</strong> – Festa & Balli</div>
+  <section class="programma" id="programma">
+    <h2>La Nostra Giornata</h2>
+    <div class="eventi">
+      <div>
+        <h3>Cerimonia</h3>
+        <p>Ore 15:30<br>Villa Fiorita, Lago di Garda</p>
+      </div>
+      <div>
+        <h3>Ristorante Belvedere</h3>
+        <p>Ore 18:00<br>Limone sul Garda</p>
+      </div>
     </div>
+    <p class="countdown">Mancano 74 giorni, 12 ore e 8 minuti al grande sì!</p>
   </section>
 
-  <section id="rsvp" class="section alt">
-    <h2>💌 RSVP</h2>
-    <p>Facci sapere se ci sarai!</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDUMMY-FORM-URL/viewform" target="_blank" class="btn">Conferma la tua presenza</a>
+  <section class="lista-nozze">
+    <h2>Lista Nozze</h2>
+    <p>Il regalo più bello sarà la vostra presenza.</p>
+    <p>Se desiderate contribuire al nostro viaggio in Giappone:</p>
+    <p><strong>IBAN:</strong> IT00A0000000000000000000000</p>
+    <p><a href="#">Link alla lista nozze su Amazon</a></p>
   </section>
 
-  <section id="lista" class="section">
-    <h2>🎁 Lista nozze</h2>
-    <p>IBAN: <strong>IT00A0000000000000000000000</strong></p>
-    <p>O visita la nostra <a href="#">lista online</a>.</p>
+  <section class="galleria">
+    <h2>Galleria Fotografica</h2>
+    <div class="foto">
+      <img src="foto-fidanzati.jpg" alt="Foto fidanzati">
+      <img src="parigi.jpg" alt="Viaggio a Parigi">
+      <img src="cagnolino.jpg" alt="Cagnolino">
+    </div>
+    <p>Dopo il matrimonio, carica anche tu le tue foto del nostro giorno!</p>
   </section>
 
-  <footer>
-    <p>Con amore, Elena & Lorenzo – 2026</p>
-  </footer>
+  <section class="rsvp">
+    <h2>RSVP</h2>
+    <p>Conferma la tua presenza entro il 10 settembre</p>
+    <!-- Puoi integrare un form HTML o collegare a Google Forms -->
+  </section>
 
-  <script>
-    const countdown = document.getElementById("countdown");
-    const target = new Date("2026-05-31T15:30:00").getTime();
-
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = target - now;
-
-      if (diff < 0) {
-        countdown.innerHTML = "È il grande giorno!";
-        return;
-      }
-
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = `
-        <div>${d}<span>giorni</span></div>
-        <div>${h}<span>ore</span></div>
-        <div>${m}<span>min</span></div>
-        <div>${s}<span>sec</span></div>
-      `;
-    }, 1000);
-  </script>
-
+  <section class="pensiero">
+    <h2>Un Pensiero per Noi</h2>
+    <p>Scrivici un ricordo, un augurio, o anche una barzelletta!</p>
+  </section>
 </body>
 </html>
