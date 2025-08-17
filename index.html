@@ -1,17 +1,399 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elena & Marco - Decor</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e7c1c5" />
+  <title>Elena & Lorenzo — Matrimonio</title>
+  <meta name="description" content="Tutte le informazioni sul matrimonio di Elena & Lorenzo: quando, dove e RSVP." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Tavolozza — Rosa antico & Verde eucalipto */
+      --rose-50:#fbf5f6;
+      --rose-100:#f7e7e8;
+      --rose-200:#f0d6d9;
+      --rose-300:#e8c4c7;
+      --rose-400:#dcaab0;
+      --rose-500:#d09099;
+      --rose-600:#c27c88;
+
+      --euca-50:#edf4f2;
+      --euca-200:#c9ded9;
+      --euca-400:#9fbfb7;
+      --euca-600:#6b9c91;
+      --euca-700:#59887d;
+      --euca-800:#3f6f64;
+
+      --ink:#2a2a2a;
+      --muted:#5c5c5c;
+      --paper:#ffffff;
+
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(63,111,100,.16);
+
+      --container: min(1100px, calc(100% - 2rem));
+
+      /* Tipografia fluida */
+      --font-display: "Playfair Display", serif;
+      --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+      --fs-hero: clamp(2.2rem, 6vw, 4rem);
+      --fs-h1: clamp(1.6rem, 4vw, 2.4rem);
+      --fs-h2: clamp(1.2rem, 2.8vw, 1.5rem);
+      --fs-body: clamp(1rem, 1.2vw, 1.05rem);
+    }
+
+    /* Background morbido */
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:var(--font-body);
+      font-size:var(--fs-body);
+      line-height:1.6;
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(107,156,145,.22), transparent 60%),
+        radial-gradient(900px 600px at -10% 20%, rgba(224,192,196,.35), transparent 60%),
+        linear-gradient(180deg, var(--rose-50), var(--euca-50));
+      background-attachment: fixed;
+      scroll-behavior:smooth;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+
+    /* Navbar glass */
+    .nav{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: color-mix(in srgb, var(--paper) 70%, var(--rose-100));
+      border-bottom:1px solid color-mix(in srgb, var(--rose-300) 55%, white);
+    }
+    .nav .wrap{
+      max-width: var(--container); margin:auto; display:flex; align-items:center; justify-content:space-between;
+      padding:.8rem 0;
+    }
+    .brand{ display:flex; align-items:center; gap:.7rem; font-weight:600; letter-spacing:.4px;}
+    .brand-badge{
+      width:38px; height:38px; border-radius:12px;
+      background: conic-gradient(from 210deg, var(--rose-400), var(--euca-600));
+      box-shadow: inset 0 0 0 2px #fff8, 0 6px 18px #00000012;
+      display:grid; place-items:center; color:white; font-weight:700; font-size:.9rem;
+    }
+    .nav a{ color:var(--ink); text-decoration:none; }
+    .menu{ display:flex; gap:1.2rem; }
+    .menu a{ padding:.5rem .6rem; border-radius:10px; transition: .25s ease; font-weight:500; }
+    .menu a:hover{ background:var(--rose-100); }
+
+    /* Layout */
+    section{ scroll-margin-top: 90px; }
+    .hero{ padding: 7rem 0 5rem; }
+    .wrap{ max-width: var(--container); margin:auto; padding: 0 0; }
+
+    .card{
+      background: linear-gradient(180deg, #fff, #fff8);
+      border:1px solid color-mix(in srgb, var(--euca-200) 40%, #fff);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(1rem, 3vw, 2rem);
+    }
+
+    .hero h1{ font-family:var(--font-display); font-size:var(--fs-hero); margin:0 0 .6rem; line-height:1.1; }
+    .hero p{ color:var(--muted); max-width: 65ch; }
+
+    .badge{ display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .7rem; border-radius:12px; font-size:.9rem; font-weight:600; letter-spacing:.25px; background: var(--euca-600); color:white; box-shadow: 0 8px 20px rgba(107,156,145,.25); }
+    .badge small{ font-weight:500; opacity:.9; }
+
+    .cta{ margin-top: 1.2rem; display:flex; gap:.8rem; flex-wrap:wrap; }
+    .btn{ display:inline-flex; align-items:center; gap:.55rem; padding:.85rem 1rem; border-radius: 14px; border:1px solid transparent; font-weight:600; text-decoration:none; transition:.25s ease; }
+    .btn-primary{ background: linear-gradient(180deg, var(--euca-600), var(--euca-700)); color:#fff; box-shadow: 0 10px 22px rgba(63,111,100,.25); }
+    .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 16px 28px rgba(63,111,100,.28); }
+    .btn-soft{ background: var(--rose-100); color: var(--ink); border-color: var(--rose-300); }
+    .btn-soft:hover{ background: var(--rose-200); }
+
+    .grid{ display:grid; gap:1rem; }
+    @media (min-width: 900px){ .grid-2{ grid-template-columns:1.1fr .9fr; } }
+
+    h2{ font-family: var(--font-display); font-weight:700; font-size: var(--fs-h1); margin:0 0 .7rem; }
+    h3{ font-weight:700; font-size: var(--fs-h2); margin:0 0 .2rem; }
+    .muted{ color:var(--muted); }
+
+    .info-list{ display:grid; gap: .8rem; }
+    .info-row{ display:flex; gap:.8rem; align-items:flex-start; padding:.8rem; border-radius:12px; background: #fff; border:1px solid var(--euca-200); }
+    .icon{ width:22px; height:22px; display:inline-grid; place-items:center; border-radius:8px; background: var(--rose-200); color:#6f3e46; font-weight:700; font-size:.85rem; }
+
+    .timeline{ position:relative; padding-left:1.4rem; }
+    .timeline::before{ content:""; position:absolute; left:.55rem; top:.2rem; bottom:.2rem; width:2px; background: color-mix(in srgb, var(--euca-400) 60%, white); border-radius:2px; }
+    .tl-item{ position:relative; padding:.35rem 0 .35rem 1rem; }
+    .tl-item::before{ content:""; position:absolute; left:-.3rem; top:.65rem; width:10px; height:10px; background: var(--euca-600); border:2px solid #fff; border-radius:50%; box-shadow: 0 2px 0 #00000010; }
+
+    /* Form RSVP */
+    form{ display:grid; gap:.9rem; }
+    label{ font-weight:600; }
+    .row{ display:grid; gap:.9rem; }
+    @media (min-width:700px){ .row{ grid-template-columns:1fr 1fr; } }
+    input, select, textarea{
+      appearance:none; width:100%; padding:.9rem 1rem; border-radius:12px; border:1px solid var(--euca-200); background:#fff; font: inherit; color:var(--ink);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    textarea{ min-height:120px; }
+    input:focus, select:focus, textarea:focus{ outline:none; border-color: var(--euca-600); box-shadow: 0 0 0 4px color-mix(in srgb, var(--euca-600) 18%, transparent); }
+    .hp{ position:absolute; left:-9999px; opacity:0; }
+
+    .notice{ font-size:.95rem; color:var(--muted); }
+
+    /* FAQ */
+    details{ background:#fff; border:1px solid var(--euca-200); border-radius:12px; padding:1rem 1.2rem; }
+    details + details{ margin-top:.6rem; }
+    summary{ cursor:pointer; font-weight:700; }
+
+    /* Footer */
+    footer{ padding:2rem 0 3rem; color:#30433f; }
+    .foot{ display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+
+    /* Motion ridotta */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-  <div class="content">
-    <h1>Elena & Marco</h1>
-    <p>20 Settembre 2024</p>
-    <p>Due cuori, una promessa. Il nostro sì, con voi.</p>
-  </div>
+  <!-- NAVBAR -->
+  <nav class="nav" aria-label="Principale">
+    <div class="wrap">
+      <a class="brand" href="#home">
+        <span class="brand-badge" aria-hidden="true">E❤L</span>
+        <span>Elena &amp; Lorenzo</span>
+      </a>
+      <div class="menu" role="menubar">
+        <a role="menuitem" href="#quando-dove">Quando &amp; Dove</a>
+        <a role="menuitem" href="#programma">Programma</a>
+        <a role="menuitem" href="#rsvp" class="">RSVP</a>
+        <a role="menuitem" href="#faq">FAQ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="wrap grid grid-2">
+      <div class="card">
+        <span class="badge" aria-label="Invito al matrimonio">
+          <span>Il nostro giorno</span> <small>— siete invitati!</small>
+        </span>
+        <h1>Elena &amp; Lorenzo</h1>
+        <p>
+          Ci sposiamo e non vediamo l'ora di festeggiare con voi! Qui trovate tutte le informazioni utili su <strong>quando</strong>, <strong>dove</strong> e come confermare la vostra presenza.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#rsvp">Conferma presenza (RSVP)</a>
+          <a class="btn btn-soft" href="#quando-dove">Dettagli dell'evento</a>
+        </div>
+      </div>
+      <div class="card" aria-label="Dettagli sintetici">
+        <h3>Dettagli in breve</h3>
+        <div class="info-list" role="list">
+          <div class="info-row" role="listitem">
+            <div class="icon" aria-hidden="true">📅</div>
+            <div>
+              <!-- TODO: Inserisci la data -->
+              <div><strong>Data:</strong> <time datetime="2025-09-20">Sabato 20 Settembre 2025</time></div>
+              <!-- TODO: Orari -->
+              <div class="muted">Cerimonia ore 15:30 · Ricevimento a seguire</div>
+            </div>
+          </div>
+          <div class="info-row" role="listitem">
+            <div class="icon" aria-hidden="true">📍</div>
+            <div>
+              <!-- TODO: Inserisci luogo e indirizzo -->
+              <div><strong>Luogo:</strong> Villa Eucalipto</div>
+              <div class="muted">Via dei Sogni 123, Firenze</div>
+            </div>
+          </div>
+          <div class="info-row" role="listitem">
+            <div class="icon" aria-hidden="true">🎉</div>
+            <div>
+              <div><strong>Dress code:</strong> Elegante ma comodo</div>
+              <div class="muted">Palette gradita: rosa antico &amp; verde eucalipto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUANDO & DOVE -->
+  <section id="quando-dove" class="wrap" aria-labelledby="when-where-title">
+    <div class="grid grid-2">
+      <div class="card">
+        <h2 id="when-where-title">Quando &amp; Dove</h2>
+        <p class="muted">Tutti i dettagli logistici per arrivare puntuali e rilassati.</p>
+        <div class="info-list" style="margin-top:.6rem">
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">⛪</div>
+            <div>
+              <!-- TODO: luogo cerimonia -->
+              <div><strong>Cerimonia</strong> — Chiesa di Santa Rosa</div>
+              <div class="muted">Piazza Antica 1, Firenze · Ore 15:30</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">🍽️</div>
+            <div>
+              <!-- TODO: luogo ricevimento -->
+              <div><strong>Ricevimento</strong> — Villa Eucalipto</div>
+              <div class="muted">Via dei Sogni 123, Firenze · A 12 min dalla cerimonia</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon" aria-hidden="true">🅿️</div>
+            <div>
+              <div><strong>Parcheggio</strong> — Disponibile in loco</div>
+              <div class="muted">Seguite la segnaletica “Matrimonio E ❤ L”.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Programma della giornata</h3>
+        <div class="timeline" aria-label="Scaletta oraria">
+          <!-- TODO: adatta orari -->
+          <div class="tl-item"><strong>15:30</strong> · Inizio cerimonia</div>
+          <div class="tl-item"><strong>16:30</strong> · Lancio del riso &amp; saluti</div>
+          <div class="tl-item"><strong>17:30</strong> · Aperitivo in giardino</div>
+          <div class="tl-item"><strong>19:30</strong> · Cena</div>
+          <div class="tl-item"><strong>22:30</strong> · Torta &amp; brindisi</div>
+          <div class="tl-item"><strong>23:00</strong> · Festa!</div>
+        </div>
+        <p class="notice">Gli orari sono indicativi e potrebbero slittare di qualche minuto — l'importante è esserci! 💕</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMA DETTAGLI / INFO -->
+  <section id="programma" class="wrap" aria-labelledby="programma-title" style="margin-top:1rem">
+    <div class="card">
+      <h2 id="programma-title">Indicazioni &amp; suggerimenti</h2>
+      <div class="grid">
+        <p>
+          Se arrivate in treno, consigliamo la stazione di <strong>Firenze S.M.N.</strong>. Dalla stazione alla location ci sono circa <strong>20 minuti</strong> in auto/taxi. Per chi alloggia in centro, valutate di condividere il passaggio ✨
+        </p>
+        <p class="muted">
+          Per allergie, intolleranze o richieste speciali del menù, vi preghiamo di segnalarlo nel modulo RSVP.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp" class="wrap" aria-labelledby="rsvp-title" style="margin-top:1rem">
+    <div class="card">
+      <h2 id="rsvp-title">Conferma presenza (RSVP)</h2>
+      <p class="muted">Vi chiediamo di confermare entro il <strong>20 agosto 2025</strong>. Grazie di cuore! 🫶</p>
+
+      <!--
+        ✅ Come renderlo funzionante su GitHub Pages (senza backend):
+        1) Apri https://formspree.io e crea un form; copia l'endpoint (es: https://formspree.io/f/abcdwxyz).
+        2) Incollalo nell'attributo action qui sotto.
+        3) (Opzionale) imposta il redirect a una pagina "grazie.html" nel tuo repo.
+
+        In alternativa puoi incorporare un Google Form o un Microsoft Form.
+      -->
+      <form action="https://formspree.io/f/abcdwxyz" method="POST">
+        <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
+        <div class="row">
+          <div>
+            <label for="nome">Nome e cognome*</label>
+            <input id="nome" name="nome" type="text" required placeholder="Mario Rossi" />
+          </div>
+          <div>
+            <label for="email">Email*</label>
+            <input id="email" name="email" type="email" required placeholder="mario@email.com" />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="telefono">Telefono</label>
+            <input id="telefono" name="telefono" type="tel" placeholder="+39 3XX XXX XXXX" />
+          </div>
+          <div>
+            <label for="presenza">Parteciperai?*</label>
+            <select id="presenza" name="presenza" required>
+              <option value="" disabled selected>Seleziona…</option>
+              <option>Con gioia, ci sarò</option>
+              <option>Mi dispiace, non posso</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="ospiti">Numero di persone (incluso te)*</label>
+            <select id="ospiti" name="ospiti" required>
+              <option value="" disabled selected>Seleziona…</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+            </select>
+          </div>
+          <div>
+            <label for="menu">Preferenze alimentari</label>
+            <select id="menu" name="preferenze_alimentari">
+              <option>Nessuna</option>
+              <option>Vegetariano</option>
+              <option>Vegano</option>
+              <option>Intolleranza al glutine</option>
+              <option>Allergie (specifica sotto)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="note">Note o allergie</label>
+          <textarea id="note" name="note" placeholder="Es. no latticini; arrivo più tardi; richiesta seggiolone…"></textarea>
+        </div>
+        <div>
+          <label style="display:flex; gap:.6rem; align-items:flex-start">
+            <input type="checkbox" name="privacy" required style="margin-top:.35rem" />
+            <span>Ho letto e accetto l'uso dei dati ai soli fini organizzativi dell'evento.</span>
+          </label>
+        </div>
+        <!-- Facoltativo: redirect dopo invio -->
+        <!-- <input type="hidden" name="_redirect" value="https://TUO-UTENTE.github.io/TUO-REPO/grazie.html"> -->
+
+        <div class="cta">
+          <button class="btn btn-primary" type="submit">Invia conferma</button>
+          <a class="btn btn-soft" href="#home">Torna su</a>
+        </div>
+        <p class="notice">I dati saranno utilizzati esclusivamente per la gestione degli inviti.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="wrap" aria-labelledby="faq-title" style="margin-top:1rem">
+    <div class="card">
+      <h2 id="faq-title">Domande frequenti</h2>
+      <details>
+        <summary>Posso portare bambini?</summary>
+        <p class="muted">Certo! Indicalo nel modulo RSVP così prepariamo i posti e, se serve, seggioloni.</p>
+      </details>
+      <details>
+        <summary>Ci sono opzioni senza glutine / vegane?</summary>
+        <p class="muted">Sì, il catering offre menù dedicati. Segnalalo nelle preferenze alimentari.</p>
+      </details>
+      <details>
+        <summary>È previsto un regalo lista nozze?</summary>
+        <p class="muted">La vostra presenza è il regalo più bello. Se desiderate, un pensiero per il nostro viaggio è ben accetto.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="wrap">
+    <div class="foot">
+      <div>
+        <strong>Elena &amp; Lorenzo</strong><br>
+        <span class="muted">Con amore, vi aspettiamo 💚💗</span>
+      </div>
+      <div class="muted">© 2025 — Sito senza foto, solo vibrazioni eleganti</div>
+    </div>
+  </footer>
 </body>
 </html>
