@@ -497,23 +497,23 @@
   </div>
 
   <!-- JS POPUP + FIREWORKS -->
-  <script>
+    <script>
   (function(){
     // ⏱️ Imposta la data/ora dell'evento (Roma)
     const targetIso = document.documentElement.dataset.countdownTarget
-      || "2026-05-31T11:15:00+02:00"; // cambia se serve
+      || "2026-05-31T11:15:00+02:00";
     const target = new Date(targetIso);
-
+  
     const overlay = document.getElementById('countdownOverlay');
-    const modal = document.getElementById('countdownModal');
-    const btnClose = document.getElementById('countdownClose');
-
+    const modal   = document.getElementById('countdownModal');
+    const btnClose= document.getElementById('countdownClose');
+  
     const dd = document.getElementById('dd');
     const hh = document.getElementById('hh');
     const mm = document.getElementById('mm');
     const ss = document.getElementById('ss');
-
-    // Chiudi popup (click X, overlay, ESC)
+  
+    // Chiudi popup (X, overlay, ESC)
     function closePopup(){
       overlay?.parentNode && overlay.parentNode.removeChild(overlay);
       document.body.style.overflow = "";
@@ -521,19 +521,24 @@
     btnClose.addEventListener('click', closePopup);
     overlay.addEventListener('click', (e) => { if(e.target === overlay) closePopup(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePopup(); });
-
+  
+    // Se l'evento è già passato, non mostrare il popup
+    if (Date.now() >= target.getTime()) {
+      closePopup();
+      return;
+    }
+  
     document.body.style.overflow = "hidden"; // evita scroll sotto al popup
-
-    // Countdown tick
+  
+    // Countdown
     let fireworksStarted = false;
-    const tick = () => {
-      const now = new Date();
+    function tick(){
+      const now  = new Date();
       const diff = target - now;
       if (diff <= 0){
-        // Countdown finito: avvia fuochi
         dd.textContent = "00"; hh.textContent = "00"; mm.textContent = "00"; ss.textContent = "00";
         if (!fireworksStarted){ fireworksStarted = true; startFireworks(); }
-        return; // continua a mostrare fireworks
+        return;
       }
       const s = Math.floor(diff/1000);
       const d = Math.floor(s/86400);
@@ -544,23 +549,23 @@
       hh.textContent = String(h).padStart(2,'0');
       mm.textContent = String(m).padStart(2,'0');
       ss.textContent = String(sec).padStart(2,'0');
-    };
+    }
     tick();
     const interval = setInterval(tick, 1000);
-
-    // 🎆 Fireworks minimal canvas
+  
+    // 🎆 Fireworks
     const canvas = document.getElementById('fwCanvas');
     const ctx = canvas.getContext('2d');
     let w, h, raf, bursts = [];
-
+  
     function resize(){
       w = canvas.width = modal.clientWidth;
       h = canvas.height = modal.clientHeight;
     }
     window.addEventListener('resize', resize);
-
+  
     function random(min, max){ return Math.random()*(max-min)+min; }
-
+  
     function createBurst(){
       const x = random(w*0.15, w*0.85);
       const y = random(h*0.25, h*0.55);
@@ -568,7 +573,7 @@
       const particles = [];
       for (let i=0;i<n;i++){
         const angle = (Math.PI*2) * (i/n);
-        a const speed = random(1.2, 3.2);
+        const speed = random(1.2, 3.2); // ✅ corretto
         particles.push({
           x, y,
           vx: Math.cos(angle)*speed,
@@ -579,61 +584,52 @@
       }
       bursts.push(particles);
     }
-
+  
     function draw(){
       ctx.fillStyle = 'rgba(255,255,255,0.2)'; // scia
       ctx.fillRect(0,0,w,h);
-
-      // sfumatura tenue sui toni del tema
+  
       const grd = ctx.createLinearGradient(0,0,w,h);
       grd.addColorStop(0,'rgba(216,170,176,0.25)'); // rosa antico
       grd.addColorStop(1,'rgba(107,156,145,0.25)'); // eucalipto
       ctx.fillStyle = grd;
       ctx.fillRect(0,0,w,h);
-
+  
       for (let i=bursts.length-1;i>=0;i--){
         const particles = bursts[i];
         for (let p of particles){
           p.age++;
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.02; // gravità lieve
+          p.vy += 0.02;
           const alpha = Math.max(0, 1 - p.age/p.life);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(63,111,100,${alpha})`;
-          ctx.fill();
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 1, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(210,144,153,${alpha})`;
-          ctx.fill();
+          ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(63,111,100,${alpha})`; ctx.fill();
+          ctx.beginPath(); ctx.arc(p.x, p.y, 1, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(210,144,153,${alpha})`; ctx.fill();
         }
-        // rimuovi burst esauriti
         if (particles.every(p => p.age >= p.life)) bursts.splice(i,1);
       }
-
-      // crea burst a ondate
+  
       if (Math.random() < 0.06) createBurst();
-
       raf = requestAnimationFrame(draw);
     }
-
+  
     function startFireworks(){
+      clearInterval(interval);
       resize();
       modal.classList.add('modal--fireworks');
       canvas.style.display = 'block';
-      // testo “è il momento!” al posto del countdown
-      const title = document.getElementById('countdownTitle');
-      title.textContent = "Ci siamo! 🎉";
-      // avvia animazione
+      document.getElementById('countdownTitle').textContent = "Ci siamo! 🎉";
       if (!raf) raf = requestAnimationFrame(draw);
-      // ferma dopo 18s per non “stressare” i device
+      // Auto-chiudi dopo 18s
       setTimeout(()=>{
-        cancelAnimationFrame(raf); raf = null; canvas.style.display='none';
-        modal.classList.remove('modal--fireworks');
+        cancelAnimationFrame(raf); raf = null;
+        closePopup();
       }, 18000);
     }
   })();
   </script>
+
 </body>
 </html>
