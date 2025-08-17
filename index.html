@@ -154,6 +154,47 @@
     @media (prefers-reduced-motion: reduce){
       *{ animation: none !important; transition: none !important; }
     }
+
+    /* ===== POPUP COUNTDOWN + FIREWORKS ===== */
+    .modal-overlay{
+      position: fixed; inset: 0; background:#0b1a1733; backdrop-filter: blur(6px);
+      display:grid; place-items:center; z-index: 1000; padding: 1rem;
+      animation: overlayIn .25s ease both;
+    }
+    @keyframes overlayIn{ from{opacity:0} to{opacity:1} }
+    .modal{
+      width:min(680px, 100%); border-radius: var(--radius);
+      background:#fff; border:1px solid var(--euca-200);
+      box-shadow: 0 20px 60px rgba(63,111,100,.25);
+      position: relative; overflow:hidden;
+    }
+    .modal-header{
+      padding:1rem 1.2rem; background: linear-gradient(180deg,var(--rose-100),#fff);
+      border-bottom:1px solid var(--euca-200); display:flex; align-items:center; justify-content:space-between;
+    }
+    .modal-title{ font-family:var(--font-display); font-weight:700; font-size: clamp(1.2rem,2.5vw,1.6rem); }
+    .modal-close{
+      appearance:none; border:0; background:transparent; font-size:1.6rem; line-height:1; cursor:pointer;
+      color:var(--euca-800); border-radius:10px; padding:.2rem .4rem;
+    }
+    .modal-close:hover{ background:var(--rose-100); }
+    .modal-body{ padding:1.2rem; }
+
+    .countdown{
+      display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin-top:.6rem;
+    }
+    .count{
+      min-width:84px; text-align:center; padding:.8rem .6rem; border-radius:14px;
+      background: #fff; border:1px solid var(--euca-200); box-shadow: var(--shadow);
+    }
+    .count strong{ font-size:clamp(1.4rem,4vw,2rem); display:block; line-height:1.1; }
+    .count span{ font-size:.9rem; color:var(--muted); }
+
+    /* Canvas fuochi d'artificio */
+    .fireworks-canvas{
+      position:absolute; inset:0; width:100%; height:100%; pointer-events:none; display:none;
+    }
+    .modal--fireworks .fireworks-canvas{ display:block; }
   </style>
 </head>
 <body>
@@ -195,16 +236,13 @@
           <div class="info-row" role="listitem">
             <div class="icon" aria-hidden="true">📅</div>
             <div>
-              <!-- TODO: Inserisci la data -->
-              <div><strong>Data:</strong> <time datetime="2025-09-20">Domenica 31 Maggio 2026</time></div>
-              <!-- TODO: Orari -->
+              <div><strong>Data:</strong> <time datetime="2026-05-31">Domenica 31 Maggio 2026</time></div>
               <div class="muted">Cerimonia ore 11:15 · Ricevimento a seguire</div>
             </div>
           </div>
           <div class="info-row" role="listitem">
             <div class="icon" aria-hidden="true">📍</div>
             <div>
-              <!-- TODO: Inserisci luogo e indirizzo -->
               <div><strong>Luogo:</strong> Villa I Tramonti</div>
               <div class="muted">Via Pulzona, 3392, 47835 Saludecio RN</div>
             </div>
@@ -230,7 +268,6 @@
           <div class="info-row">
             <div class="icon" aria-hidden="true">⛪</div>
             <div>
-              <!-- TODO: luogo cerimonia -->
               <div><strong>Cerimonia</strong> — Chiesa di San Clemente RN</div>
               <div class="muted">Piazza Giuseppe Mazzini, 1, 47832 San Clemente RN · Ore: 11:15</div>
             </div>
@@ -238,7 +275,6 @@
           <div class="info-row">
             <div class="icon" aria-hidden="true">🍽️</div>
             <div>
-              <!-- TODO: luogo ricevimento -->
               <div><strong>Ricevimento</strong> — Villa I Tramonti</div>
               <div class="muted">Via Pulzona, 3392, 47835 Saludecio RN · A 18 min dalla cerimonia</div>
             </div>
@@ -256,7 +292,6 @@
       <div class="card">
         <h3>Programma della giornata</h3>
         <div class="timeline" aria-label="Scaletta oraria">
-          <!-- TODO: adatta orari -->
           <div class="tl-item"><strong>11:15</strong> · Inizio cerimonia</div>
           <div class="tl-item"><strong>12:15</strong> · Lancio del riso &amp; saluti</div>
           <div class="tl-item"><strong>12:50</strong> · Welcome Drink</div>
@@ -269,8 +304,8 @@
       </div>
     </div>
   </section>
-  
-      <!-- COME ARRIVARE DA BOLOGNA -->
+
+  <!-- COME ARRIVARE DA BOLOGNA -->
   <section id="come-arrivare" class="wrap" aria-labelledby="arrivo-title" style="margin-top:1rem">
     <div class="card">
       <h2 id="arrivo-title">Come arrivare da Bologna</h2>
@@ -316,23 +351,12 @@
     </div>
   </section>
 
-    </div>
-  </section>
-
   <!-- RSVP -->
   <section id="rsvp" class="wrap" aria-labelledby="rsvp-title" style="margin-top:1rem">
     <div class="card">
       <h2 id="rsvp-title">Conferma presenza (RSVP)</h2>
       <p class="muted">Vi chiediamo di confermare entro il <strong>30 aprile 2026</strong>. Grazie di cuore! 🫶</p>
 
-      <!--
-        ✅ Come renderlo funzionante su GitHub Pages (senza backend):
-        1) Apri https://formspree.io e crea un form; copia l'endpoint (es: https://formspree.io/f/abcdwxyz).
-        2) Incollalo nell'attributo action qui sotto.
-        3) (Opzionale) imposta il redirect a una pagina "grazie.html" nel tuo repo.
-
-        In alternativa puoi incorporare un Google Form o un Microsoft Form.
-      -->
       <form action="https://formspree.io/f/mnnzypoj" method="POST">
         <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
         <div class="row">
@@ -388,8 +412,6 @@
             <span>Ho letto e accetto l'uso dei dati ai soli fini organizzativi dell'evento.</span>
           </label>
         </div>
-        <!-- Facoltativo: redirect dopo invio -->
-        <!-- <input type="hidden" name="_redirect" value="https://TUO-UTENTE.github.io/TUO-REPO/grazie.html"> -->
 
         <div class="cta">
           <button class="btn btn-primary" type="submit">Invia conferma</button>
@@ -414,13 +436,13 @@
       </details>
       <details>
         <summary>È prevista una lista nozze?</summary>
-        <p class="muted">La vostra presenza è il regalo più grande 💕  
+        <p class="muted">La vostra presenza è il regalo più grande 💕
         Se però desiderate fare un pensiero, trovate i dettagli nella sezione <a href="#regali">Un pensiero</a>.</p>
       </details>
     </div>
   </section>
 
-    <!-- REGALI / IBAN -->
+  <!-- REGALI / IBAN -->
   <section id="regali" class="wrap" aria-labelledby="regali-title" style="margin-top:1rem">
     <div class="card">
       <h2 id="regali-title">Un pensiero</h2>
@@ -445,8 +467,173 @@
         <strong>Elena &amp; Lorenzo</strong><br>
         <span class="muted">Con amore, vi aspettiamo 💚💗</span>
       </div>
-      <div class="muted">© 2025 — Sito senza foto, solo vibrazioni eleganti</div>
+      <div class="muted">© 2026 — Con amore, Elena &amp; Lorenzo</div>
     </div>
   </footer>
+
+  <!-- ===== POPUP COUNTDOWN (dentro il body) ===== -->
+  <div class="modal-overlay" id="countdownOverlay" role="dialog" aria-modal="true" aria-labelledby="countdownTitle">
+    <div class="modal" id="countdownModal">
+      <canvas class="fireworks-canvas" id="fwCanvas"></canvas>
+      <div class="modal-header">
+        <div class="modal-title" id="countdownTitle">Ci vediamo presto! ✨</div>
+        <button class="modal-close" id="countdownClose" aria-label="Chiudi popup">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted" style="text-align:center;max-width:52ch;margin:0 auto .6rem;">
+          Mancano solo…
+        </p>
+        <div class="countdown" aria-live="polite">
+          <div class="count"><strong id="dd">00</strong><span>giorni</span></div>
+          <div class="count"><strong id="hh">00</strong><span>ore</span></div>
+          <div class="count"><strong id="mm">00</strong><span>minuti</span></div>
+          <div class="count"><strong id="ss">00</strong><span>secondi</span></div>
+        </div>
+        <p class="notice" style="text-align:center;margin-top:.9rem;">
+          Domenica <strong>31 Maggio 2026</strong> · ore <strong>11:15</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS POPUP + FIREWORKS -->
+  <script>
+  (function(){
+    // ⏱️ Imposta la data/ora dell'evento (Roma)
+    const targetIso = document.documentElement.dataset.countdownTarget
+      || "2026-05-31T11:15:00+02:00"; // cambia se serve
+    const target = new Date(targetIso);
+
+    const overlay = document.getElementById('countdownOverlay');
+    const modal = document.getElementById('countdownModal');
+    const btnClose = document.getElementById('countdownClose');
+
+    const dd = document.getElementById('dd');
+    const hh = document.getElementById('hh');
+    const mm = document.getElementById('mm');
+    const ss = document.getElementById('ss');
+
+    // Chiudi popup (click X, overlay, ESC)
+    function closePopup(){
+      overlay?.parentNode && overlay.parentNode.removeChild(overlay);
+      document.body.style.overflow = "";
+    }
+    btnClose.addEventListener('click', closePopup);
+    overlay.addEventListener('click', (e) => { if(e.target === overlay) closePopup(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePopup(); });
+
+    document.body.style.overflow = "hidden"; // evita scroll sotto al popup
+
+    // Countdown tick
+    let fireworksStarted = false;
+    const tick = () => {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0){
+        // Countdown finito: avvia fuochi
+        dd.textContent = "00"; hh.textContent = "00"; mm.textContent = "00"; ss.textContent = "00";
+        if (!fireworksStarted){ fireworksStarted = true; startFireworks(); }
+        return; // continua a mostrare fireworks
+      }
+      const s = Math.floor(diff/1000);
+      const d = Math.floor(s/86400);
+      const h = Math.floor((s%86400)/3600);
+      const m = Math.floor((s%3600)/60);
+      const sec = s%60;
+      dd.textContent = String(d).padStart(2,'0');
+      hh.textContent = String(h).padStart(2,'0');
+      mm.textContent = String(m).padStart(2,'0');
+      ss.textContent = String(sec).padStart(2,'0');
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+
+    // 🎆 Fireworks minimal canvas
+    const canvas = document.getElementById('fwCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, raf, bursts = [];
+
+    function resize(){
+      w = canvas.width = modal.clientWidth;
+      h = canvas.height = modal.clientHeight;
+    }
+    window.addEventListener('resize', resize);
+
+    function random(min, max){ return Math.random()*(max-min)+min; }
+
+    function createBurst(){
+      const x = random(w*0.15, w*0.85);
+      const y = random(h*0.25, h*0.55);
+      const n = Math.floor(random(24, 42));
+      const particles = [];
+      for (let i=0;i<n;i++){
+        const angle = (Math.PI*2) * (i/n);
+        a const speed = random(1.2, 3.2);
+        particles.push({
+          x, y,
+          vx: Math.cos(angle)*speed,
+          vy: Math.sin(angle)*speed,
+          life: random(40, 70),
+          age: 0
+        });
+      }
+      bursts.push(particles);
+    }
+
+    function draw(){
+      ctx.fillStyle = 'rgba(255,255,255,0.2)'; // scia
+      ctx.fillRect(0,0,w,h);
+
+      // sfumatura tenue sui toni del tema
+      const grd = ctx.createLinearGradient(0,0,w,h);
+      grd.addColorStop(0,'rgba(216,170,176,0.25)'); // rosa antico
+      grd.addColorStop(1,'rgba(107,156,145,0.25)'); // eucalipto
+      ctx.fillStyle = grd;
+      ctx.fillRect(0,0,w,h);
+
+      for (let i=bursts.length-1;i>=0;i--){
+        const particles = bursts[i];
+        for (let p of particles){
+          p.age++;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.02; // gravità lieve
+          const alpha = Math.max(0, 1 - p.age/p.life);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(63,111,100,${alpha})`;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(210,144,153,${alpha})`;
+          ctx.fill();
+        }
+        // rimuovi burst esauriti
+        if (particles.every(p => p.age >= p.life)) bursts.splice(i,1);
+      }
+
+      // crea burst a ondate
+      if (Math.random() < 0.06) createBurst();
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    function startFireworks(){
+      resize();
+      modal.classList.add('modal--fireworks');
+      canvas.style.display = 'block';
+      // testo “è il momento!” al posto del countdown
+      const title = document.getElementById('countdownTitle');
+      title.textContent = "Ci siamo! 🎉";
+      // avvia animazione
+      if (!raf) raf = requestAnimationFrame(draw);
+      // ferma dopo 18s per non “stressare” i device
+      setTimeout(()=>{
+        cancelAnimationFrame(raf); raf = null; canvas.style.display='none';
+        modal.classList.remove('modal--fireworks');
+      }, 18000);
+    }
+  })();
+  </script>
 </body>
 </html>
