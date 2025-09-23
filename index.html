@@ -132,25 +132,25 @@
       display: inline-block;
       font: inherit;
       color: inherit;
-      line-height: 1;
-      padding: 0 .2em;
+      line-height: 1.4;
+      padding: 0 .3em;
       cursor: pointer;
-      z-index: 2;
     }
     
     .magic-explode::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: #e5b4c2; /* copertura rosa antico */
-      border-radius: 4px;
-      z-index: 2;
+      background: #e5b4c2; /* rosa antico */
+      border-radius: 6px;
+      z-index: 1;
       transition: opacity 0.8s ease-out;
     }
     
-    .magic-explode.revealed::before {
+    .magic-explode:hover::before {
       opacity: 0;
     }
+
     
     /* canvas sopra tutto */
     #magicCanvas {
