@@ -125,7 +125,45 @@
     .timeline::before{ content:""; position:absolute; left:.55rem; top:.2rem; bottom:.2rem; width:2px; background: color-mix(in srgb, var(--euca-400) 60%, white); border-radius:2px; }
     .tl-item{ position:relative; padding:.35rem 0 .35rem 1rem; }
     .tl-item::before{ content:""; position:absolute; left:-.3rem; top:.65rem; width:10px; height:10px; background: var(--euca-600); border:2px solid #fff; border-radius:50%; box-shadow: 0 2px 0 #00000010; }
+    
+    /* Carica Immagini */
+    .magic-explode {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.2em;
+      color: #222;
+      cursor: pointer;
+      overflow: hidden;
+    }
 
+    .magic-explode::before {
+      content: "█████████"; /* blocco che copre la parola */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: transparent;
+      background: #e5b4c2; /* rosa antico */
+      clip-path: polygon(
+        0 0, 100% 0, 100% 100%, 0 100%
+      );
+      animation: none;
+    }
+
+    .magic-explode:hover::before {
+      animation: explode 1.5s forwards;
+    }
+
+    @keyframes explode {
+      0%   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 1; }
+      30%  { clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); opacity: 0.9; }
+      60%  { clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%); opacity: 0.6; }
+      80%  { clip-path: polygon(20% 0, 80% 0, 60% 100%, 40% 100%); opacity: 0.3; }
+      100% { clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%); opacity: 0; }
+    }
+      
     /* Form RSVP */
     form{ display:grid; gap:.9rem; }
     label{ font-weight:600; }
