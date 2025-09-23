@@ -491,81 +491,86 @@
     <p class="muted">Vi chiediamo di confermare entro il <strong>13 maggio 2026</strong>. Grazie di cuore! 🫶</p>
 
     <form action="https://formspree.io/f/mnnzypoj" method="POST">
-      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
-      
-      <div class="row">
-        <div>
-          <label for="nome">Nome e cognome*</label>
-          <input id="nome" name="nome" type="text" required placeholder="Mario Rossi" />
-        </div>
-        <div>
-          <label for="email">Email*</label>
-          <input id="email" name="email" type="email" required placeholder="mario@email.com" />
-        </div>
-      </div>
-      
-      <div class="row">
-        <div>
-          <label for="telefono">Telefono</label>
-          <input id="telefono" name="telefono" type="tel" placeholder="+39 3XX XXX XXXX" />
-        </div>
-        <div>
-          <label for="presenza">Parteciperai?*</label>
-          <select id="presenza" name="presenza" required>
-            <option value="" disabled selected>Seleziona…</option>
-            <option>Con gioia, ci sarò 🎉</option>
-            <option>Mi dispiace, non posso 😢</option>
-          </select>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div>
-          <label for="ospiti">Numero di persone (incluso te)*</label>
-          <select id="ospiti" name="ospiti" required>
-            <option value="" disabled selected>Seleziona…</option>
-            <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
-          </select>
-        </div>
-        <div>
-          <label for="ospitiNomi">Nomi degli invitati che verranno con te</label>
-          <textarea id="ospitiNomi" name="ospitiNomi" placeholder="Es. Anna Rossi, Marco Bianchi..."></textarea>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div>
-          <label for="menu">Preferenze alimentari</label>
-          <select id="menu" name="preferenze_alimentari">
-            <option>Nessuna</option>
-            <option>Vegetariano</option>
-            <option>Vegano</option>
-            <option>Intolleranza al glutine</option>
-            <option>Allergie (specifica sotto)</option>
-          </select>
-        </div>
-      </div>
-      
+    <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
+  
+    <!-- Informazioni base -->
+    <div class="row">
       <div>
-        <label for="note">Note o allergie</label>
-        <textarea id="note" name="note" placeholder="Es. no latticini; arrivo più tardi; richiesta seggiolone…"></textarea>
+        <label for="nome">Nome e cognome*</label>
+        <input id="nome" name="nome" type="text" required placeholder="Mario Rossi" />
       </div>
-      
-      <!-- Privacy resa più chiara -->
-      <div style="margin-top:1rem">
-        <label style="display:flex; gap:.6rem; align-items:flex-start">
-          <input type="checkbox" name="privacy" required style="margin-top:.35rem" />
-          <span>✅ Autorizzo l’uso dei miei dati <strong>solo per l’organizzazione del matrimonio</strong>.</span>
-        </label>
+      <div>
+        <label for="email">Email*</label>
+        <input id="email" name="email" type="email" required placeholder="mario@email.com" />
       </div>
-      
-      <div class="cta">
-        <button class="btn btn-primary" type="submit">📩 Invia conferma</button>
-        <a class="btn btn-soft" href="#home">🔝 Torna su</a>
+    </div>
+  
+    <div class="row">
+      <div>
+        <label for="telefono">Telefono</label>
+        <input id="telefono" name="telefono" type="tel" placeholder="+39 3XX XXX XXXX" />
       </div>
-      <p class="notice">I dati verranno utilizzati esclusivamente per la gestione degli inviti.</p>
-
-    </form>
+      <div>
+        <label for="presenza">Parteciperai?*</label>
+        <select id="presenza" name="presenza" required>
+          <option value="" disabled selected>Seleziona…</option>
+          <option>Con gioia, ci sarò 🎉</option>
+          <option>Mi dispiace, non posso 😢</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Ospiti -->
+    <div class="row">
+      <div>
+        <label for="ospiti">Numero totale di persone (incluso te)*</label>
+        <select id="ospiti" name="ospiti" required>
+          <option value="" disabled selected>Seleziona…</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5+</option>
+        </select>
+      </div>
+      <div>
+        <label for="ospitiNomi">Nomi accompagnatori</label>
+        <input id="ospitiNomi" name="ospitiNomi" type="text" placeholder="Es. Anna Rossi, Marco Bianchi" />
+      </div>
+    </div>
+  
+    <!-- Preferenze -->
+    <div>
+      <label for="menu">Preferenze alimentari</label>
+      <select id="menu" name="preferenze_alimentari">
+        <option>Nessuna</option>
+        <option>Vegetariano</option>
+        <option>Vegano</option>
+        <option>Senza glutine</option>
+        <option>Allergie (specificare sotto)</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="note">Note o esigenze particolari</label>
+      <textarea id="note" name="note" placeholder="Es. no latticini; arrivo più tardi; richiesta seggiolone…"></textarea>
+    </div>
+  
+    <!-- Privacy -->
+    <div class="privacy-box" style="margin-top:1rem">
+      <label style="display:flex; gap:.6rem; align-items:center; cursor:pointer">
+        <input type="checkbox" name="privacy" required />
+        <span>Ho preso visione e autorizzo l’uso dei miei dati <strong>solo per l’organizzazione del matrimonio</strong>.</span>
+      </label>
+    </div>
+  
+    <!-- CTA -->
+    <div class="cta">
+      <button class="btn btn-primary" type="submit">📩 Invia conferma</button>
+      <a class="btn btn-soft" href="#home">🔝 Torna su</a>
+    </div>
+    <p class="notice">I dati verranno utilizzati esclusivamente per la gestione degli inviti.</p>
+  </form>
   </div>
 </section>
 
