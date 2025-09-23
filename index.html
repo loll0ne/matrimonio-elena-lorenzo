@@ -130,39 +130,37 @@
     .magic-explode {
       position: relative;
       display: inline-block;
-      font-weight: 700;
-      font-size: 1.2em;
-      color: #222;
+      font: inherit;
+      color: inherit;
+      line-height: 1;
+      padding: 0 .2em;
       cursor: pointer;
-      overflow: hidden;
+      z-index: 2;
     }
-
+    
     .magic-explode::before {
-      content: "█████████"; /* blocco che copre la parola */
+      content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: transparent;
-      background: #e5b4c2; /* rosa antico */
-      clip-path: polygon(
-        0 0, 100% 0, 100% 100%, 0 100%
-      );
-      animation: none;
+      inset: 0;
+      background: #e5b4c2; /* copertura rosa antico */
+      border-radius: 4px;
+      z-index: 2;
+      transition: opacity 0.8s ease-out;
+    }
+    
+    .magic-explode.revealed::before {
+      opacity: 0;
+    }
+    
+    /* canvas sopra tutto */
+    #magicCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 999;
     }
 
-    .magic-explode:hover::before {
-      animation: explode 1.5s forwards;
-    }
-
-    @keyframes explode {
-      0%   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 1; }
-      30%  { clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); opacity: 0.9; }
-      60%  { clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%); opacity: 0.6; }
-      80%  { clip-path: polygon(20% 0, 80% 0, 60% 100%, 40% 100%); opacity: 0.3; }
-      100% { clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%); opacity: 0; }
-    }
       
     /* Form RSVP */
     form{ display:grid; gap:.9rem; }
@@ -814,6 +812,59 @@
     });
   })();
 </script>
+ <!-- Script polvere magica -->
+  <script>
+    const span = document.querySelector('.magic-explode');
+    const canvas = document.getElementById('magicCanvas');
+    const ctx = canvas.getContext('2d');
 
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function createParticles(x, y){
+      const particles = [];
+      for(let i=0; i<40; i++){
+        particles.push({
+          x, y,
+          vx: (Math.random() - 0.5) * 4,
+          vy: (Math.random() - 0.5) * 4,
+          life: 60,
+          color: Math.random() > 0.5 ? "#e5b4c2" : "#6b9c91"
+        });
+      }
+      return particles;
+    }
+
+    let particles = [];
+
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+        ctx.globalAlpha = Math.max(p.life/60, 0);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
+        ctx.fill();
+        if(p.life <= 0) particles.splice(i,1);
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    span.addEventListener('mouseenter', (e)=>{
+      const rect = span.getBoundingClientRect();
+      const x = rect.left + rect.width/2;
+      const y = rect.top + rect.height/2;
+      particles.push(...createParticles(x, y));
+      span.classList.add('revealed');
+    });
+  </script>
 </body>
 </html>
