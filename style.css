@@ -16,3 +16,40 @@ body {
   text-align: center;
   padding: 4rem 2rem;
 }
+
+.magic-explode {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #222;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.magic-explode::before {
+  content: "█████████"; /* blocco che copre la parola */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  background: #e5b4c2; /* rosa antico come polvere */
+  clip-path: polygon(
+    0 0, 100% 0, 100% 100%, 0 100%
+  );
+  animation: none;
+}
+
+.magic-explode:hover::before {
+  animation: explode 1.5s forwards;
+}
+
+@keyframes explode {
+  0%   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 1; }
+  30%  { clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); opacity: 0.9; }
+  60%  { clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%); opacity: 0.6; }
+  80%  { clip-path: polygon(20% 0, 80% 0, 60% 100%, 40% 100%); opacity: 0.3; }
+  100% { clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%); opacity: 0; }
+}
